@@ -35,6 +35,9 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
@@ -47,4 +50,8 @@ dependencies {
     // Hilt
     implementation("com.google.dagger:hilt-android:${Versions.googleHilt}")
     kapt("com.google.dagger:hilt-android-compiler:${Versions.googleHilt}")
+
+    // Navigation
+    implementation("androidx.navigation:navigation-fragment-ktx:${Versions.androidXNavigation}")
+    implementation("androidx.navigation:navigation-ui-ktx:${Versions.androidXNavigation}")
 }
