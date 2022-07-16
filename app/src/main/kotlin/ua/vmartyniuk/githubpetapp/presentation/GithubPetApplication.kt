@@ -1,4 +1,4 @@
-package ua.vmartyniuk.githubpetapp
+package ua.vmartyniuk.githubpetapp.presentation
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp
