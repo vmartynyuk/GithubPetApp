@@ -13,4 +13,4 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "GithubPetApp"
-include ':app'
+include(":app")
