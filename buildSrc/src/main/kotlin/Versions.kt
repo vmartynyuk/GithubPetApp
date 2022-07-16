@@ -6,6 +6,7 @@ object Versions {
     const val googleMaterial = "1.6.1"
     const val googleHilt = "2.42"
     const val androidXNavigation = "2.5.0"
+    const val bumptechGlide = "4.13.2"
 
     const val gradlePluginAndroid = "7.2.1"
     const val gradlePluginKotlin = kotlin

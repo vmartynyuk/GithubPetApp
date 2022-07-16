@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="ua.vmartyniuk.githubpetapp">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".presentation.GithubPetApplication"
         android:allowBackup="true"

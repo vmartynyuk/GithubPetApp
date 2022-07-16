@@ -54,4 +54,8 @@ dependencies {
     // Navigation
     implementation("androidx.navigation:navigation-fragment-ktx:${Versions.androidXNavigation}")
     implementation("androidx.navigation:navigation-ui-ktx:${Versions.androidXNavigation}")
+
+    // Glide
+    implementation ("com.github.bumptech.glide:glide:${Versions.bumptechGlide}")
+    kapt("com.github.bumptech.glide:compiler:${Versions.bumptechGlide}")
 }
