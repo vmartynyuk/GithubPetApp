@@ -1,6 +1,8 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    kotlin("kapt")
+    id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -41,4 +43,8 @@ dependencies {
     implementation ("androidx.appcompat:appcompat:${Versions.androidxAppCompat}")
     implementation ("com.google.android.material:material:${Versions.googleMaterial}")
     implementation ("androidx.constraintlayout:constraintlayout:${Versions.androidxConstraintLayout}")
+
+    // Hilt
+    implementation("com.google.dagger:hilt-android:${Versions.googleHilt}")
+    kapt("com.google.dagger:hilt-android-compiler:${Versions.googleHilt}")
 }
