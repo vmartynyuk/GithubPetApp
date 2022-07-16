@@ -9,12 +9,14 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import ua.vmartyniuk.githubpetapp.databinding.FragmentListBinding
 import ua.vmartyniuk.githubpetapp.domain.models.RepositoryModel
 import ua.vmartyniuk.githubpetapp.presentation.list.adapter.RepositoryAdapter
 import ua.vmartyniuk.githubpetapp.presentation.utils.launchWithRepeatOnStarted
 
+@AndroidEntryPoint
 class ListFragment: Fragment() {
 
     private var _binding: FragmentListBinding? = null
