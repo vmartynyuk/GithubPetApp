@@ -7,4 +7,5 @@
     <string name="no_data_text">No any data</string>
     <string name="error_connection_text">Check your internet connection</string>
     <string name="error_unknown">Unknown error</string>
+    <string name="details">Details</string>
 </resources>

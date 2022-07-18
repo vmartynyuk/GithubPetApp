@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import dagger.hilt.android.AndroidEntryPoint
@@ -104,6 +105,7 @@ class ListFragment: Fragment() {
     }
 
     private val onItemClicked = { model: RepositoryModel ->
-        // todo: open details
+        val action = ListFragmentDirections.actionListFragmentToRepositoryDetailsFragment(model)
+        findNavController().navigate(action)
     }
 }

@@ -15,4 +15,5 @@ object Versions {
     const val gradlePluginAndroid = "7.2.1"
     const val gradlePluginKotlin = kotlin
     const val gradlePluginHilt = googleHilt
+    const val gradlePluginNavigation = androidXNavigation
 }
