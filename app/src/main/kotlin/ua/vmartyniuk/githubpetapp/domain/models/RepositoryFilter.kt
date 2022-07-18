@@ -3,8 +3,7 @@ package ua.vmartyniuk.githubpetapp.domain.models
 data class RepositoryFilter(
     val query: String,
     val sortBy: SortBy,
-    val order: OrderBy,
-    val page: Int
+    val order: OrderBy
 )
 
 enum class SortBy(val value: String) {

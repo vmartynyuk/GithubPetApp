@@ -2,6 +2,7 @@ package ua.vmartyniuk.githubpetapp.presentation.list.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -10,21 +11,25 @@ import ua.vmartyniuk.githubpetapp.R
 import ua.vmartyniuk.githubpetapp.databinding.ListItemBinding
 import ua.vmartyniuk.githubpetapp.domain.models.RepositoryModel
 
-class RepositoryAdapter(private val onItemClick: (RepositoryModel) -> Unit): ListAdapter<RepositoryModel, RepositoryViewHolder>(RepositoryDiffCallback()) {
+class RepositoryAdapter(
+    private val onItemClick: (RepositoryModel) -> Unit
+): PagingDataAdapter<RepositoryModel, RepositoryViewHolder>(RepositoryDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RepositoryViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val binding = ListItemBinding.inflate(layoutInflater, parent, false)
         return RepositoryViewHolder(binding) { position ->
             if (position != RecyclerView.NO_POSITION) {
-                onItemClick(getItem(position))
+                getItem(position)?.let(onItemClick)
             }
         }
     }
 
     override fun onBindViewHolder(holder: RepositoryViewHolder, position: Int) {
         if (position != RecyclerView.NO_POSITION) {
-            holder.bind(getItem(position))
+            getItem(position)?.let { model ->
+                holder.bind(model)
+            }
         }
     }
 
@@ -41,7 +46,7 @@ class RepositoryViewHolder(
 
     init {
         itemView.setOnClickListener {
-            onItemClick(adapterPosition)
+            onItemClick(bindingAdapterPosition)
         }
     }
 

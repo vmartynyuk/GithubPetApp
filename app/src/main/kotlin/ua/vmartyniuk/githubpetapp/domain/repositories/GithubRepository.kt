@@ -1,5 +1,8 @@
 package ua.vmartyniuk.githubpetapp.domain.repositories
 
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
@@ -18,14 +21,14 @@ class GithubRepository @Inject constructor(
     private val _repositories = MutableSharedFlow<Result<List<RepositoryModel>>>(replay = 1)
     val repositories: Flow<Result<List<RepositoryModel>>> = _repositories.asSharedFlow()
 
-    suspend fun loadGithubRepositories(filter: RepositoryFilter) {
-        apiService.getRepositories(
-            filter.query,
-            filter.sortBy.value,
-            filter.order.value,
-            filter.page
-        ).let { result ->
-            result.map { responseModel -> responseModel.asModelList }
-        }.let { result -> _repositories.tryEmit(result) }
+    fun loadGithubRepositories(filter: RepositoryFilter) : Flow<PagingData<RepositoryModel>>  {
+        return Pager(
+            config = PagingConfig(enablePlaceholders = false, pageSize = NETWORK_PAGE_SIZE),
+            pagingSourceFactory = { RepositoryPagingSource(apiService, filter) }
+        ).flow
+    }
+
+    companion object {
+        private const val NETWORK_PAGE_SIZE = 10
     }
 }
