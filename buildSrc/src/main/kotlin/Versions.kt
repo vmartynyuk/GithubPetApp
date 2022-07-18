@@ -3,6 +3,7 @@ object Versions {
     const val androidxCoreKts = "1.8.0"
     const val androidxAppCompat = "1.4.2"
     const val androidxConstraintLayout = "2.1.4"
+    const val androidxSwipeRefreshLayout = "1.1.0"
     const val googleMaterial = "1.6.1"
     const val googleHilt = "2.42"
     const val androidXNavigation = "2.5.0"

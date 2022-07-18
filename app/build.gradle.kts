@@ -51,10 +51,11 @@ android {
 
 dependencies {
 
-    implementation ("androidx.core:core-ktx:${Versions.androidxCoreKts}")
-    implementation ("androidx.appcompat:appcompat:${Versions.androidxAppCompat}")
-    implementation ("com.google.android.material:material:${Versions.googleMaterial}")
-    implementation ("androidx.constraintlayout:constraintlayout:${Versions.androidxConstraintLayout}")
+    implementation("androidx.core:core-ktx:${Versions.androidxCoreKts}")
+    implementation("androidx.appcompat:appcompat:${Versions.androidxAppCompat}")
+    implementation("com.google.android.material:material:${Versions.googleMaterial}")
+    implementation("androidx.constraintlayout:constraintlayout:${Versions.androidxConstraintLayout}")
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:${Versions.androidxSwipeRefreshLayout}")
 
     implementation("com.google.code.gson:gson:${Versions.googleGson}")
 
