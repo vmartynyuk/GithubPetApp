@@ -13,4 +13,6 @@ data class RepositoryResponse(
     val stargazersCount: Int,
     @SerializedName("owner")
     val owner: RepositoryOwnerResponse,
+    @SerializedName("html_url")
+    val htmlUrl: String,
 )
