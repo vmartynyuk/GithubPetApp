@@ -6,7 +6,6 @@ import ua.vmartyniuk.githubpetapp.data.network.service.ApiService
 import ua.vmartyniuk.githubpetapp.domain.models.RepositoryFilter
 import ua.vmartyniuk.githubpetapp.domain.models.RepositoryModel
 import ua.vmartyniuk.githubpetapp.domain.models.asModelList
-import kotlin.math.ceil
 
 class RepositoryPagingSource(
     private val apiService: ApiService,
@@ -26,7 +25,8 @@ class RepositoryPagingSource(
             filter.query,
             filter.sortBy.value,
             filter.order.value,
-            page
+            page,
+            params.loadSize
         )
         return if (response.isSuccess) {
             val repositories = response.getOrNull()?.asModelList ?: emptyList()

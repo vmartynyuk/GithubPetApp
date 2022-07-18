@@ -11,7 +11,8 @@ interface ApiService {
         @Query("q") query: String,
         @Query("sort") sort: String,
         @Query("order") order: String,
-        @Query("page") page: Int
+        @Query("page") page: Int,
+        @Query("per_page") perPage: Int,
     ): Result<RepositoriesListResponse>
 
 }

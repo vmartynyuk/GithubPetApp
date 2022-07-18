@@ -4,7 +4,7 @@ import java.io.IOException
 
 open class GithubPetApiException(
     val code: Int,
-    message: String?,
+    override val message: String?,
     cause: Throwable? = null
 ) : IOException(message, cause)
 

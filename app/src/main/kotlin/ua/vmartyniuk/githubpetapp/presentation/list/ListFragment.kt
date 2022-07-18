@@ -17,6 +17,7 @@ import ua.vmartyniuk.githubpetapp.databinding.FragmentListBinding
 import ua.vmartyniuk.githubpetapp.domain.models.RepositoryModel
 import ua.vmartyniuk.githubpetapp.presentation.list.adapter.LoadStateAdapter
 import ua.vmartyniuk.githubpetapp.presentation.list.adapter.RepositoryAdapter
+import ua.vmartyniuk.githubpetapp.presentation.utils.getMessage
 import ua.vmartyniuk.githubpetapp.presentation.utils.launchWithRepeatOnStarted
 
 @AndroidEntryPoint
@@ -39,10 +40,8 @@ class ListFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val adapter = RepositoryAdapter(onItemClicked)
-        setupList(adapter)
-        binding.retryButton.setOnClickListener {
-            adapter.retry()
-        }
+        setupViews(adapter)
+
 
         launchWithRepeatOnStarted {
             launch { observeAdapterStates(adapter) }
@@ -50,12 +49,20 @@ class ListFragment: Fragment() {
         }
     }
 
-    private fun setupList(adapter: RepositoryAdapter) {
-        binding.repositoryList.apply {
-            layoutManager = LinearLayoutManager(requireContext())
-            this.adapter = adapter.withLoadStateFooter(
-                footer = LoadStateAdapter { adapter.retry() }
-            )
+    private fun setupViews(adapter: RepositoryAdapter) {
+        with(binding) {
+            repositoryList.apply {
+                layoutManager = LinearLayoutManager(requireContext())
+                this.adapter = adapter.withLoadStateFooter(
+                    footer = LoadStateAdapter { adapter.retry() }
+                )
+            }
+            retryButton.setOnClickListener {
+                adapter.retry()
+            }
+            swipeToRefreshLayout.setOnRefreshListener {
+                adapter.refresh()
+            }
         }
     }
 
@@ -67,17 +74,20 @@ class ListFragment: Fragment() {
             val isError = state is LoadState.Error && adapter.itemCount == 0
 
             with(binding) {
-                repositoryList.isVisible = !isLoading && !isError
-                loader.isVisible = isLoading
-                retryButton.isVisible = isError
+                swipeToRefreshLayout.apply {
+                    isVisible = !isLoading && !isError
+                    isRefreshing = false
+                }
                 placeholder.apply {
                     isVisible = isEmpty || isError
                     text = when {
                         isEmpty -> getString(R.string.no_data_text)
-                        isError -> (state as LoadState.Error).error.message
+                        isError -> (state as LoadState.Error).getMessage(requireContext())
                         else -> null
                     }
                 }
+                loader.isVisible = isLoading
+                retryButton.isVisible = isError
             }
         }
     }
