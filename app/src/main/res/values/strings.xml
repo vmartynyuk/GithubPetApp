@@ -3,4 +3,6 @@
     <string name="repositories">Repositories</string>
     <string name="owner_avatar">Owner avatar</string>
     <string name="by_owner">By %s</string>
+    <string name="retry">Retry</string>
+    <string name="no_data_text">No any data</string>
 </resources>

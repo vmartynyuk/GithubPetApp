@@ -22,33 +22,20 @@ class ListViewModel @Inject constructor(
         SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
     }
 
-    val repositories = repositoryInteractor.repositories
-        .onEach { _isLoading.value = false }
-
-    private val _isLoading = MutableStateFlow(false)
-    val isLoading = _isLoading.asStateFlow()
-
     private val filter = MutableStateFlow<RepositoryFilter?>(null)
 
-    init {
-        observeFilterChanges()
-        initFilter()
-    }
+    val repositories = filter.filterNotNull()
+        .flatMapLatest { filter -> repositoryInteractor.loadGithubRepositories(filter) }
 
-    private fun observeFilterChanges() {
-        viewModelScope.launch {
-            filter.filterNotNull().collect { filter ->
-                loadNewData(filter)
-            }
-        }
+    init {
+        initFilter()
     }
 
     private fun initFilter() {
         val initialFilter = RepositoryFilter(
             buildLast30DaysQuery(),
             SortBy.STARS,
-            OrderBy.DESC,
-            INITIAL_PAGE
+            OrderBy.DESC
         )
         filter.value = initialFilter
     }
@@ -58,14 +45,5 @@ class ListViewModel @Inject constructor(
         calendar.add(Calendar.DAY_OF_MONTH, -30)
         val formattedDate = formatter.format(calendar.time)
         return "created:>$formattedDate"
-    }
-
-    private suspend fun loadNewData(filter: RepositoryFilter) {
-        _isLoading.value = true
-        repositoryInteractor.loadGithubRepositories(filter)
-    }
-
-    companion object {
-        private const val INITIAL_PAGE = 1
     }
 }

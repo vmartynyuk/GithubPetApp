@@ -58,6 +58,9 @@ dependencies {
 
     implementation("com.google.code.gson:gson:${Versions.googleGson}")
 
+    // Paging
+    implementation("androidx.paging:paging-runtime:${Versions.androidxPaging}")
+
     // Hilt
     implementation("com.google.dagger:hilt-android:${Versions.googleHilt}")
     kapt("com.google.dagger:hilt-android-compiler:${Versions.googleHilt}")
