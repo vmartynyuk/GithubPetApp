@@ -16,13 +16,7 @@ class RepositoryInteractor @Inject constructor(
 
     val repositories: Flow<Result<List<RepositoryModel>>> = githubRepository.repositories
 
-    suspend fun loadGithubRepositories(page: Int) {
-        val filter = RepositoryFilter(
-            listOf("created:2021-01-01"),
-            SortBy.STARS,
-            OrderBy.DESC,
-            page
-        )
+    suspend fun loadGithubRepositories(filter: RepositoryFilter) {
         githubRepository.loadGithubRepositories(filter)
     }
 }

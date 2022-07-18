@@ -1,14 +1,11 @@
 package ua.vmartyniuk.githubpetapp.domain.models
 
 data class RepositoryFilter(
-    val queries: List<String>,
+    val query: String,
     val sortBy: SortBy,
     val order: OrderBy,
     val page: Int
-) {
-    val query: String
-        get() = queries.joinToString(" ")
-}
+)
 
 enum class SortBy(val value: String) {
     STARS("stars"), FOLLOWERS("followers")
