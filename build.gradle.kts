@@ -3,4 +3,6 @@ plugins {
     id("com.android.application") version Versions.gradlePluginAndroid apply false
     id("com.android.library") version Versions.gradlePluginAndroid apply false
     id("org.jetbrains.kotlin.android") version Versions.gradlePluginKotlin apply false
+    id("com.google.dagger.hilt.android") version Versions.gradlePluginHilt apply false
+    id("androidx.navigation.safeargs.kotlin") version Versions.gradlePluginNavigation apply false
 }
