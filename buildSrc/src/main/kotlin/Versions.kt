@@ -7,6 +7,8 @@ object Versions {
     const val googleHilt = "2.42"
     const val androidXNavigation = "2.5.0"
     const val bumptechGlide = "4.13.2"
+    const val googleGson = "2.9.0"
+    const val squareupRetrofit = "2.9.0"
 
     const val gradlePluginAndroid = "7.2.1"
     const val gradlePluginKotlin = kotlin
