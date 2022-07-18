@@ -16,8 +16,6 @@ import kotlinx.coroutines.launch
 import ua.vmartyniuk.githubpetapp.R
 import ua.vmartyniuk.githubpetapp.databinding.FragmentListBinding
 import ua.vmartyniuk.githubpetapp.domain.models.RepositoryModel
-import ua.vmartyniuk.githubpetapp.presentation.details.RepositoryDetailsFragment
-import ua.vmartyniuk.githubpetapp.presentation.details.RepositoryDetailsFragmentArgs
 import ua.vmartyniuk.githubpetapp.presentation.list.adapter.LoadStateAdapter
 import ua.vmartyniuk.githubpetapp.presentation.list.adapter.RepositoryAdapter
 import ua.vmartyniuk.githubpetapp.presentation.utils.getMessage
