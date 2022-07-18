@@ -31,7 +31,7 @@ class ListViewModel @Inject constructor(
     private fun addStabData() {
         viewModelScope.launch {
             _isLoading.value = true
-            repositoryInteractor.loadGithubRepositories()
+            repositoryInteractor.loadGithubRepositories(1)
         }
     }
 }
